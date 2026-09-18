@@ -54,3 +54,5 @@ class RingBuffer:
         post: __return__ == (self.size() == self.capacity)
         """
         return len(self._data) == self.capacity
+
+# Veridict demo: an agent-assisted edit that must carry evidence.
