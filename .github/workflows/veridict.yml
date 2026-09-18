@@ -5,7 +5,6 @@
 # refs/notes/veridict. On every pull request the range is verified against
 # .veridict/policy.toml and the verdict lands in the job summary.
 #
-# Pinned to the mvp branch while the MVP is validated; switches to @main after merge.
 
 name: veridict
 
@@ -25,7 +24,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: sumitvekariya/veridict-core@mvp
+      - uses: sumitvekariya/veridict-core@main
         with:
           mode: attest
 
@@ -37,7 +36,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.sha }}
-      - uses: sumitvekariya/veridict-core@mvp
+      - uses: sumitvekariya/veridict-core@main
         with:
           mode: verify
           range: ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}
