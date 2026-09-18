@@ -1,0 +1,29 @@
+# Veridict policy for the demo repository.
+version = 1
+
+[trust]
+keys = []
+
+[[trust.identities]]
+issuer = "https://token.actions.githubusercontent.com"
+identity = "https://github.com/vayu-network/anonymous-review-demo/.github/workflows/veridict.yml@refs/heads/*"
+
+[options]
+allow_tree_match = false
+unknown_author = "agent"
+
+[[rule]]
+name = "agent-written python"
+paths = ["**/*.py"]
+authors = ["agent", "assisted"]
+require = [
+  { checker = "mypy", result = ["pass"] },
+  { checker = "pytest", result = ["pass"] },
+  { checker = "crosshair", result = ["pass", "skipped"] },
+]
+
+[[rule]]
+name = "policy edits"
+paths = [".veridict/**"]
+authors = ["human", "assisted", "agent"]
+require = []
